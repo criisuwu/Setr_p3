@@ -15,8 +15,7 @@ void colorOff(int pin){
 }
 
 //Inicio o reinicio del sistema
-void systemOn()
-{
+void systemOn(){
   lcd.setCursor(0, 0);
   lcd.print("Cargando...");
 
