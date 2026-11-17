@@ -5,3 +5,8 @@
     
     Archivo para las funciones del sistema de servicio al cliente
 */
+
+void noPerson()
+{
+    if 
+}
