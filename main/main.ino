@@ -1,49 +1,26 @@
-#include <LiquidCrystal.h>
-
-const int redPin = 11;
-const int yellowPin = 10;
-
-//  Declaracion de la LCD
-LiquidCrystal lcd (4, 5, 6, 7, 8, 9);
-
-void colorOn(int pin){
-  digitalWrite (pin, HIGH);
-}
-
-void colorOff(int pin){
-  digitalWrite (pin, LOW);
-}
-
-//Inicio o reinicio del sistema
-void systemOn(){
-  lcd.setCursor(0, 0);
-  lcd.print("Cargando...");
-
-  for (int i = 0; i <= 2; i++)
-  {
-    colorOn(yellowPin);
-    delay(100);
-    colorOff(yellowPin);
-    delay(100);
-  }
-}
+/*
+    Sistemas Empotrados y Tiempo Real
+    Creador: Cristina Homobono Fernández
+    Fecha: 23/11/26
+    
+    El archivo main para el funcionamiento de la maquina
+*/
+#include "library.h"
 
 void setup() {
-  //pinMode(redPin, OUTPUT);
-  pinMode(yellowPin, OUTPUT);
-
-  Serial.begin(9600);
-
-  //  Inicializacion del LCD
-  lcd.begin(16, 2);
-
-  //hace que solo se ejecute cuando se enciende o cuando se reinicia
-  systemOn();
+  initSystem();
 }
 
 void loop() {
-  //codigo aqui
+  wdt_reset();
+  controller.run();
+  unsigned long now = millis();
 
-  delay(1000);
+  if (handleButton(now)) return;
 
+  Joy joy = pendingJoy;     pendingJoy = J_NONE;
+  bool joyBtn = pendingBtn; pendingBtn = false;
+
+  if (state >= ST_ADMIN_MENU) adminLoop(now, joy, joyBtn);
+  else                        serviceLoop(now, joy, joyBtn);
 }
