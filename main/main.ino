@@ -18,9 +18,13 @@ void loop() {
 
   if (handleButton(now)) return;
 
-  Joy joy = pendingJoy;     pendingJoy = J_NONE;
-  bool joyBtn = pendingBtn; pendingBtn = false;
+  Joy joy = pendingJoy;
+  pendingJoy = J_NONE;
+  bool joyBtn = pendingBtn;
+  pendingBtn = false;
 
-  if (state >= ST_ADMIN_MENU) adminLoop(now, joy, joyBtn);
-  else                        serviceLoop(now, joy, joyBtn);
+  if (state >= ST_ADMIN_MENU)
+    adminLoop(now, joy, joyBtn);
+  else
+    serviceLoop(now, joy, joyBtn);
 }

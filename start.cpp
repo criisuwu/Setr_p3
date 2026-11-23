@@ -293,11 +293,16 @@ void initSystem() {
   Timer1.attachInterrupt(isrTick);
 
   // Threads
-  tBlink.onRun(blinkTask);     tBlink.setInterval(500);
-  tJoy.onRun(joyTask);         tJoy.setInterval(20);
-  tDist.onRun(distTask);       tDist.setInterval(150);
-  tDHT.onRun(dhtTask);         tDHT.setInterval(2000);
-  tUI.onRun(uiTask);           tUI.setInterval(100);
+  tBlink.onRun(blinkTask);     
+  tBlink.setInterval(500);
+  tJoy.onRun(joyTask);         
+  tJoy.setInterval(20);
+  tDist.onRun(distTask);       
+  tDist.setInterval(150);
+  tDHT.onRun(dhtTask);         
+  tDHT.setInterval(2000);
+  tUI.onRun(uiTask);           
+  tUI.setInterval(100);
   controller.add(&tBlink);
   controller.add(&tJoy);
   controller.add(&tDist);
@@ -312,6 +317,7 @@ void initSystem() {
 // ---------------- Botón ----------------
 // Devuelve true si se ha producido un cambio de modo/reinicio y el loop
 // debe terminar esta vuelta
+bool handleButton(unsigned long now) {
   bool pressed, longFired, releaseEv;
   unsigned long pStart, rDur;
   noInterrupts();
@@ -335,7 +341,10 @@ void initSystem() {
     // Entrada/Salida del modo admin
     if (pressed && !longFired && (long)(now - pStart) >= (long)ADMIN_MS) {
       noInterrupts(); btnLongFired = true; interrupts();
-      if (adminMode) exitAdmin(); else enterAdmin();
+      if (adminMode)
+        exitAdmin();
+      else
+        enterAdmin();
       return true;
     }
     // Reinicio

@@ -58,8 +58,15 @@ Las funciones de este modo se encuentran en el archivo `service.cpp`. Este archi
 >En los estados en los que solo sale break es porque son gestionados por otras partes del código, como `ST_PREPARING` lo gestiona la función `serviceUI()`.
 
 ### Administración
-Las funciones de este modo se encuentran en el archivo `admin.cpp`. 
+Las funciones de este modo se encuentran en el archivo `admin.cpp`. Se compone de las funciones:\
+`fmtAdmin()` que al igual que la función `fmtProduct()` en el archivo `start.cpp` le da el formato al menu para el servicio de administrador.\
 
+`enterAdmin()` cambia el modo, muestra el menú y enciende el **LED**.\
+
+`exitAdmin()` cambia el modo _administrador_ al modo _servicio_.\
+
+`adminLoop()` es el bucle principal compuesto con un _switch case_ donde siempre muestra el menu. Y dentro de ese primer _switch case_ tenemos otro _Switch case_ para la elección del menú, es decir para ver la temperatura si se escoge la opción de la temperatura, lo mismo con la de la distancia y el tiempo, y permite la modificación del precio de los productos (deja escoger que producto se quiere modificar el precio y cada subida/bajada se realiza de 10 centimos).
+`adminUI()` muestra los datos en la **LCD** tales como la distancia, el tiempo y la temperatura, además del menú.
 
 ## Esquemas
 Este es el esquema hecho con _Fritzing_.
@@ -73,3 +80,6 @@ El hardware de la maquina ya terminado (ya se ha verificado que todo funciona co
 ![Hardware](fotos/finalCircuito.jpeg)
 Vista delantera una vez encendido y funcionando.
 ![Funciona](fotos/MantageEncendido.jpeg)
+
+## Conclusión
+
