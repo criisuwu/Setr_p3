@@ -80,6 +80,10 @@ El hardware de la maquina ya terminado (ya se ha verificado que todo funciona co
 ![Hardware](fotos/finalCircuito.jpeg)
 Vista delantera una vez encendido y funcionando.
 ![Funciona](fotos/MantageEncendido.jpeg)
+Vista de la maquina por delante ya montada al completo.
+![Delante](fotos/frontal.jpeg)
+Vista del circuito dentro de la caja.
+![Funciona](fotos/dentro.jpeg)
 
 ## Conclusión
 A lo largo del proyecto uso diferentes recursos para intentar optimizar el funcionamiento de la maquina. Entre ellos las cosas que uso son:
